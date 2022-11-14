@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">izotov_Jetpack_Compose</string>
+    <string name="title_activity_second">SecondActivity</string>
+    <string name="title_activity_thrird">ThrirdActivity</string>
+    <string name="title_activity_fourth">FourthActivity</string>
+    <string name="title_activity_fifth">FifthActivity</string>
+    <string name="title_activity_sixth">SixthActivity</string>
+    <string name="title_activity_profile">Profile</string>
+    <string name="title_activity_user_login">UserLogin</string>
+    <string name="title_activity_user_login2">UserLogin2</string>
+    <string name="title_activity_alarmc">ALARMc</string>
+    <string name="title_activity_alarmtrue_c">ALARMtrueC</string>
+</resources>
