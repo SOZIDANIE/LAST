@@ -96,7 +96,8 @@ fun Image() {
 fun Text() {
     Text("Будильник",
         fontSize = 30.sp,
-        modifier = Modifier.padding(20.dp),
+        modifier = Modifier.padding(20.dp)
+            .offset(x = (-10).dp),
         color = White,
         fontWeight = FontWeight.Bold)
 }

@@ -8,11 +8,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -20,6 +19,8 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.BitmapPainter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.imageResource
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -68,6 +69,17 @@ class SixthActivity : ComponentActivity() {
 @Composable
 fun nameTask_1() {
     Column(modifier = Modifier.padding(top = 10.dp, end = 20.dp).offset(x = 20.dp, 0.dp)) {
+        val message = remember{ mutableStateOf("") }
+        TextField(
+            message.value,
+            {message.value = it},
+            textStyle = TextStyle(fontSize =  18.sp),
+            placeholder = { Text(text = "Заголовок задачи")},
+            //leadingIcon = { Icon(painter = painterResource(R.drawable.greyclock), contentDescription = "clock", modifier = Modifier.size(20.dp)) },
+            modifier = Modifier.size(350.dp, 60.dp)
+                .clip(RoundedCornerShape(5.dp)), colors = TextFieldDefaults.textFieldColors(backgroundColor = White, cursorColor = Color.Black, unfocusedIndicatorColor = Color.Transparent, focusedIndicatorColor = Color.Transparent)
+        )
+        /*
         Box(
             modifier = Modifier
                 .size(350.dp, 32.dp)
@@ -88,12 +100,24 @@ fun nameTask_1() {
                 modifier = Modifier.padding(5.dp)
             )
         }
+         */
     }
 }
 
 @Composable
 fun clock_1() {
     Column(modifier = Modifier.padding(top = 10.dp, end = 20.dp).offset(x = 20.dp, 4.dp)) {
+        val message = remember{ mutableStateOf("") }
+        TextField(
+            message.value,
+            {message.value = it},
+            textStyle = TextStyle(fontSize =  18.sp),
+            placeholder = { Text(text = "16:30")},
+            leadingIcon = { Icon(painter = painterResource(R.drawable.greyclock), contentDescription = "clock", modifier = Modifier.size(20.dp)) },
+            modifier = Modifier.size(165.dp, 60.dp)
+                .clip(RoundedCornerShape(5.dp)), colors = TextFieldDefaults.textFieldColors(backgroundColor = White, cursorColor = Color.Black, unfocusedIndicatorColor = Color.Transparent, focusedIndicatorColor = Color.Transparent)
+        )
+        /*
         Box(
             modifier = Modifier
                 .size(165.dp, 32.dp)
@@ -124,54 +148,29 @@ fun clock_1() {
                         .offset(10.dp)
                 )
             }
-        }
+         */
     }
 }
+
 
 @Composable
 fun calend_1() {
-    Column(modifier = Modifier.padding(top = 10.dp, end = 20.dp).offset(x = 20.dp, 4.dp)) {
-        Box(
-            modifier = Modifier
-                .size(165.dp, 32.dp)
-                .clip(
-                    RoundedCornerShape(
-                        topStart = 5.dp,
-                        topEnd = 5.dp,
-                        bottomEnd = 5.dp,
-                        bottomStart = 5.dp,
-                    )
-                )
-                .background(White)
-        ) {
-            Row() {
-                androidx.compose.foundation.Image(
-                    painter = BitmapPainter(ImageBitmap.imageResource(R.drawable.graycalend)),
-                    contentDescription = "clock",
-                    modifier = Modifier
-                        .size(17.dp)
-                        .offset(x = (7).dp, y = (8).dp)
-                )
-                Text(
-                    "14.01.2021",
-                    fontSize = 20.sp,
-                    color = Gray1,
-                    modifier = Modifier
-                        .padding(5.dp)
-                        .offset(10.dp)
-                )
-            }
-        }
-    }
-}
-
-@Composable
-fun task_1() {
-    Column(modifier = Modifier.padding(top = 10.dp, end = 20.dp).offset(x = 20.dp, 0.dp)) {
-        Row(modifier = Modifier.offset(y = 10.dp)) {
+    Column(modifier = Modifier.padding(top = 10.dp, end = 20.dp).offset(x = 0.dp, (-10).dp)) {
+        Column(modifier = Modifier.padding(top = 10.dp, end = 20.dp).offset(x = 20.dp, 4.dp)) {
+            val message = remember{ mutableStateOf("") }
+            TextField(
+                message.value,
+                {message.value = it},
+                textStyle = TextStyle(fontSize =  18.sp),
+                placeholder = { Text(text = "14.01.2021")},
+                leadingIcon = { Icon(painter = painterResource(R.drawable.graycalend), contentDescription = "clock", modifier = Modifier.size(20.dp)) },
+                modifier = Modifier.size(165.dp, 60.dp)
+                    .clip(RoundedCornerShape(5.dp)), colors = TextFieldDefaults.textFieldColors(backgroundColor = White, cursorColor = Color.Black, unfocusedIndicatorColor = Color.Transparent, focusedIndicatorColor = Color.Transparent)
+            )
+            /*
             Box(
                 modifier = Modifier
-                    .size(350.dp, 96.dp)
+                    .size(165.dp, 32.dp)
                     .clip(
                         RoundedCornerShape(
                             topStart = 5.dp,
@@ -182,14 +181,66 @@ fun task_1() {
                     )
                     .background(White)
             ) {
-                Text(
-                    "Описание задачи",
-                    fontSize = 20.sp,
-                    color = Gray1,
-                    modifier = Modifier.padding(5.dp)
-                )
-            }
+                Row() {
+                    androidx.compose.foundation.Image(
+                        painter = BitmapPainter(ImageBitmap.imageResource(R.drawable.graycalend)),
+                        contentDescription = "clock",
+                        modifier = Modifier
+                            .size(17.dp)
+                            .offset(x = (7).dp, y = (8).dp)
+                    )
+                    Text(
+                        "14.01.2021",
+                        fontSize = 20.sp,
+                        color = Gray1,
+                        modifier = Modifier
+                            .padding(5.dp)
+                            .offset(10.dp)
+                    )
+                }
+
+             */
         }
+    }
+}
+
+@Composable
+fun task_1() {
+    Column(modifier = Modifier.padding(top = 10.dp, end = 20.dp).offset(x = 20.dp, 0.dp)) {
+        val message = remember{ mutableStateOf("") }
+        TextField(
+            message.value,
+            {message.value = it},
+            textStyle = TextStyle(fontSize =  18.sp),
+            placeholder = { Text(text = "Описание задачи")},
+            //leadingIcon = { Icon(painter = painterResource(R.drawable.greyclock), contentDescription = "clock", modifier = Modifier.size(20.dp)) },
+            modifier = Modifier.size(350.dp, 150.dp)
+                .clip(RoundedCornerShape(5.dp)), colors = TextFieldDefaults.textFieldColors(backgroundColor = White, cursorColor = Color.Black, unfocusedIndicatorColor = Color.Transparent, focusedIndicatorColor = Color.Transparent)
+        )
+        /*
+            Row(modifier = Modifier.offset(y = 10.dp)) {
+                Box(
+                    modifier = Modifier
+                        .size(350.dp, 96.dp)
+                        .clip(
+                            RoundedCornerShape(
+                                topStart = 5.dp,
+                                topEnd = 5.dp,
+                                bottomEnd = 5.dp,
+                                bottomStart = 5.dp,
+                            )
+                        )
+                        .background(White),
+                ) {
+                    Text(
+                        "Описание задачи",
+                        fontSize = 20.sp,
+                        color = Gray1,
+                        modifier = Modifier.padding(5.dp)
+                    )
+                }
+
+             */
     }
 }
 
@@ -204,7 +255,7 @@ fun ButtonFor6() {
             backgroundColor = LightGreen, contentColor = DarkGreen
         ), modifier = Modifier
             .size(350.dp, 60.dp)
-            .offset(x = 23.dp, y = (290).dp)
+            .offset(x = 23.dp, y = (170).dp)
             .background(color = Green1), shape = RoundedCornerShape(15.dp)
     ) {
         Text(
@@ -225,7 +276,7 @@ fun ButtonFor6_1() {
             backgroundColor = Red1, contentColor = Red2
         ), modifier = Modifier
             .size(350.dp, 60.dp)
-            .offset(x = 23.dp, y = (150).dp)
+            .offset(x = 23.dp, y = (40).dp)
             .background(color = Green1), shape = RoundedCornerShape(15.dp)
     ) {
         Text(

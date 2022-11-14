@@ -8,11 +8,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -20,6 +19,7 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.BitmapPainter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.imageResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -61,52 +61,30 @@ class UserLogin : ComponentActivity() {
 @Composable
 fun TrxtView1() {
     Column(modifier = Modifier.padding(top = 10.dp, end = 20.dp).offset(20.dp,145.dp)) {
-        Box(
-            modifier = Modifier
-                .size(350.dp, 35.dp)
-                .clip(
-                    RoundedCornerShape(
-                        topStart = 5.dp,
-                        topEnd = 5.dp,
-                        bottomEnd = 5.dp,
-                        bottomStart = 5.dp,
-                    )
-                )
-                .background(White)
-        ) {
-            Text(
-                "Имя пользователя",
-                fontSize = 20.sp,
-                color = Gray1,
-                modifier = Modifier.padding(5.dp)
-            )
-        }
+        val message = remember{mutableStateOf("")}
+        TextField(
+            message.value,
+            {message.value = it},
+            textStyle = TextStyle(fontSize =  18.sp),
+            placeholder = { Text(text = "Имя пользователя")},
+            modifier = Modifier.size(350.dp, 60.dp)
+                .clip(RoundedCornerShape(5.dp)), colors = TextFieldDefaults.textFieldColors(backgroundColor = White, cursorColor = Color.Black, unfocusedIndicatorColor = Color.Transparent, focusedIndicatorColor = Color.Transparent)
+        )
     }
 }
 
 @Composable
 fun TrxtView1_1() {
     Column(modifier = Modifier.padding(top = 10.dp, end = 20.dp).offset(20.dp, 150.dp)) {
-        Box(
-            modifier = Modifier
-                .size(350.dp, 35.dp)
-                .clip(
-                    RoundedCornerShape(
-                        topStart = 5.dp,
-                        topEnd = 5.dp,
-                        bottomEnd = 5.dp,
-                        bottomStart = 5.dp,
-                    )
-                )
-                .background(White)
-        ) {
-            Text(
-                "Пароль",
-                fontSize = 20.sp,
-                color = Gray1,
-                modifier = Modifier.padding(5.dp)
-            )
-        }
+        val message = remember{ mutableStateOf("") }
+        TextField(
+            message.value,
+            {message.value = it},
+            textStyle = TextStyle(fontSize =  18.sp),
+            placeholder = { Text(text = "Пароль")},
+            modifier = Modifier.size(350.dp, 60.dp)
+                .clip(RoundedCornerShape(5.dp)), colors = TextFieldDefaults.textFieldColors(backgroundColor = White, cursorColor = Color.Black, unfocusedIndicatorColor = Color.Transparent, focusedIndicatorColor = Color.Transparent)
+        )
     }
 }
 

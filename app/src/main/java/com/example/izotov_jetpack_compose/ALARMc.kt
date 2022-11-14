@@ -15,10 +15,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.BitmapPainter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.imageResource
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -41,8 +44,8 @@ class ALARMc : ComponentActivity() {
                         ImageFor6l()
                         TextFor6l()
                         Row {
-                            TrxtView6l_1()
-                            TrxtView6l_2()
+                            clock_a()
+                            calend_a()
                         }
                         Row {
                             Cheks()
@@ -61,47 +64,69 @@ class ALARMc : ComponentActivity() {
 }
 
 @Composable
-fun TrxtView6l_1() {
-    Column(modifier = Modifier.padding(top = 0.dp, end = 10.dp)) {
-        Row(modifier = Modifier.padding(top = 0.dp, end = 10.dp).offset(x = 20.dp)) {
-            Box(
-                modifier = Modifier
-                    .size(165.dp, 32.dp)
-                    .clip(
-                        RoundedCornerShape(
-                            topStart = 5.dp,
-                            topEnd = 5.dp,
-                            bottomEnd = 5.dp,
-                            bottomStart = 5.dp,
-                        )
+fun clock_a() {
+    Column(modifier = Modifier.padding(top = 10.dp, end = 20.dp).offset(x = 20.dp, (-30).dp)) {
+        val message = remember{mutableStateOf("")}
+        TextField(
+            message.value,
+            {message.value = it},
+            textStyle = TextStyle(fontSize =  18.sp),
+            placeholder = { Text(text = "16:30")},
+            leadingIcon = { Icon(painter = painterResource(R.drawable.greyclock), contentDescription = "clock", modifier = Modifier.size(20.dp)) },
+            modifier = Modifier.size(165.dp, 60.dp)
+                .clip(RoundedCornerShape(5.dp)), colors = TextFieldDefaults.textFieldColors(backgroundColor = White, cursorColor = Color.Black, unfocusedIndicatorColor = Color.Transparent, focusedIndicatorColor = Color.Transparent)
+        )
+        /*
+        Box(
+            modifier = Modifier
+                .size(165.dp, 32.dp)
+                .clip(
+                    RoundedCornerShape(
+                        topStart = 5.dp,
+                        topEnd = 5.dp,
+                        bottomEnd = 5.dp,
+                        bottomStart = 5.dp,
                     )
-                    .background(White)
-            ) {
-                Row {
-                    androidx.compose.foundation.Image(
-                        painter = BitmapPainter(ImageBitmap.imageResource(R.drawable.greyclock)),
-                        contentDescription = "clock",
-                        modifier = Modifier
-                            .size(17.dp)
-                            .offset(x = (7).dp, y = (8).dp)
-                    )
-                    Text(
-                        "16:30",
-                        fontSize = 20.sp,
-                        color = Gray1,
-                        modifier = Modifier
-                            .padding(5.dp)
-                            .offset(10.dp)
-                    )
-                }
+                )
+                .background(White)
+        ) {
+            Row() {
+                androidx.compose.foundation.Image(
+                    painter = BitmapPainter(ImageBitmap.imageResource(R.drawable.greyclock)),
+                    contentDescription = "clock",
+                    modifier = Modifier
+                        .size(17.dp)
+                        .offset(x = (7).dp, y = (8).dp)
+                )
+                Text(
+                    "16:30",
+                    fontSize = 20.sp,
+                    color = Gray1,
+                    modifier = Modifier
+                        .padding(5.dp)
+                        .offset(10.dp)
+                )
             }
-        }
+         */
     }
 }
+
+
 @Composable
-fun TrxtView6l_2() {
-    Column(modifier = Modifier.padding(top = 0.dp, end = 20.dp)) {
-        Row(modifier = Modifier.padding(top = 0.dp, end = 20.dp).offset(x = 20.dp)) {
+fun calend_a() {
+    Column(modifier = Modifier.padding(top = 10.dp, end = 20.dp).offset(x = 0.dp, (-45).dp)) {
+        Column(modifier = Modifier.padding(top = 10.dp, end = 20.dp).offset(x = 20.dp, 4.dp)) {
+            val message = remember{mutableStateOf("")}
+            TextField(
+                message.value,
+                {message.value = it},
+                textStyle = TextStyle(fontSize =  18.sp),
+                placeholder = { Text(text = "14.01.2021")},
+                leadingIcon = { Icon(painter = painterResource(R.drawable.graycalend), contentDescription = "clock", modifier = Modifier.size(20.dp)) },
+                modifier = Modifier.size(165.dp, 60.dp)
+                    .clip(RoundedCornerShape(5.dp)), colors = TextFieldDefaults.textFieldColors(backgroundColor = White, cursorColor = Color.Black, unfocusedIndicatorColor = Color.Transparent, focusedIndicatorColor = Color.Transparent)
+            )
+            /*
             Box(
                 modifier = Modifier
                     .size(165.dp, 32.dp)
@@ -114,9 +139,8 @@ fun TrxtView6l_2() {
                         )
                     )
                     .background(White)
-                    .offset(x = 0.dp)
             ) {
-                Row {
+                Row() {
                     androidx.compose.foundation.Image(
                         painter = BitmapPainter(ImageBitmap.imageResource(R.drawable.graycalend)),
                         contentDescription = "clock",
@@ -133,14 +157,15 @@ fun TrxtView6l_2() {
                             .offset(10.dp)
                     )
                 }
-            }
+
+             */
         }
     }
 }
 
 @Composable
 fun Cheks() {
-    Column(modifier = Modifier.offset(20.dp)) {
+    Column(modifier = Modifier.offset(20.dp, (-30).dp)) {
         Text(
             "Повторять каждый",
             fontSize = 16.sp,
@@ -283,7 +308,7 @@ fun ButtonFor6l() {
             backgroundColor = LightGreen, contentColor = DarkGreen
         ), modifier = Modifier
             .size(350.dp, 60.dp)
-            .offset(x = 23.dp, y = (220).dp)
+            .offset(x = 23.dp, y = (190).dp)
             .background(color = Green1), shape = RoundedCornerShape(15.dp)
     ) {
         Text(
@@ -317,8 +342,8 @@ fun ImageFor6l() {
 fun TextFor6l() {
     Text(
         "Изменить будильник",
-        fontSize = 30.sp,
-        modifier = Modifier.offset(x = 10.dp, y = (-50).dp),
+        fontSize = 25.sp,
+        modifier = Modifier.offset(x = 24.dp, y = (-50).dp),
         color = White,
         fontWeight = FontWeight.Bold
     )
@@ -333,7 +358,7 @@ fun ButtonFor6_1l() {
             backgroundColor = Red1, contentColor = Red2
         ), modifier = Modifier
             .size(350.dp, 60.dp)
-            .offset(x = 23.dp, y = (80).dp)
+            .offset(x = 23.dp, y = (60).dp)
             .background(color = Green1), shape = RoundedCornerShape(15.dp)
     ) {
         Text(
